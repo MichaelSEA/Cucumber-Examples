@@ -1,0 +1,71 @@
+@Alaska
+@AccountingFeature: Alaska Accounting Training Requirements
+	Periods end on December 31 every odd numbered year
+	I must complete 80 credits of CPE during the period
+	During each year of the period I must complete at least 20 credits
+	I must complete at least 4 credits of Alaska State Specific Ethics
+	As a new licensee I do not have a requirement
+	As a new licensee who was licensed during the last 3 months of the period, I am given until the December 31 of an odd year subsequent to the current period and have a full requirement.
+	No more than 16 credits can be from alternate sponsors.
+	No more than 30 credits are allowed in teaching/instruction format
+
+	@Fake
+Background:
+	
+	Given a customer named "FakeAcct"
+	
+	And FakeAcct is an accountant
+	
+        And Alaska is one of FakeAcct's jurisdictions
+	
+	When FakeAcct takes CPE training during the current period
+
+Scenario: Client reports all of his CPE training for the current period
+	
+	Given Client reports training for the current period
+	Then Total credits for the period should be at least 80 credits in CPE training
+
+Scenario: Client is required to earn 4 credits in ethics every period
+	Then Ethics credits should be at least 4 credits over the past 3 years
+
+Scenario: Client cannot earn more than 16 credits from alternate sponsors every period
+	Then No more than 16 credits from alternate sponsors may be earned each period
+
+
+Scenario: Client cannot earn more than 30 credits from teaching every period
+	Then No more than 30 credits from teaching may be earned each period
+
+
+@NewLicensee
+Scenario: Client is a new licensee who was licensed before the last 3 months of the period
+	Given Client is a new licensee
+        And Client was licensed before the last 3 months of the period
+	Then The total credits for the period should be 0 
+
+@NewLicensee
+Scenario: Client is a new licensee and licensed during the last 3 months of the period
+	Given Client is a new licensee
+        And Client was licensed during the last 3 months of the period
+	Then Period the period will end on the December 31 of odd years after the December 31 of the year licensed
+	And total credits for the period should be at least 80 credits
+
+@NewLicensee
+Scenario: Client is a new licensee and licensed during the last 3 months of the period
+	Given Client is a new licensee
+        And Client was licensed during the last 3 months of the period
+	Then Period the period will end on the December 31 of odd years after the December 31 of the year licensed
+	And ethics credits for the period should be at least 4 credits
+
+@NewLicensee
+Scenario: Client is a new licensee and licensed during the last 3 months of the period
+	Given Client is a new licensee
+        And Client was licensed during the last 3 months of the period
+	Then Period the period will end on the December 31 of odd years after the December 31 of the year licensed
+	And the restriction for alternate sponsor programs is set to 16 credits
+
+@NewLicensee
+Scenario: Client is a new licensee and licensed during the last 3 months of the period
+	Given Client is a new licensee
+        And Client was licensed during the last 3 months of the period
+	Then Period the period will end on the December 31 of odd years after the December 31 of the year licensed
+	And the restriction for teaching as a delivery format is set to 30 credits

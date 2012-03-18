@@ -1,0 +1,71 @@
+@Arkansas
+@AccountingFeature: Arkansas Accounting Training Requirements
+	As an Accountant in Arkansas I have a choice between an annual period or a Rolling Triennial period
+	Periods end on December 31 every year
+	As a licensee who chose an annual requirement, I must complete 40 credits of CPE
+	As a licensee who chose a triennial requirement, I must complete 120 credits of CPE
+	As a new licensee, my period begins on the January 1st of the beginning of the period
+	As a new licensee, my requirements and periods are exactly the same as an experienced licensee
+	I am required to earn 4 credits in ethics on a rolling triennial basis regardless of whether I am tracking on an annual or triennial basis
+	At least 60% of the total requirement must be in the following subjects: Accounting, Auditing, Tax, Computer Science, Management Advisory Services and Ethics
+	No more than 60% of my credit can be in the combined values from teaching, writing and self-study formats
+	If I am engaged in attest services, at least 20% of my requirement must be in Accounting and Auditing
+
+
+@Fake
+Background:
+	
+	Given a customer named "FakeAcct"
+	
+	And FakeAcct is an accountant
+	
+        And Arkansas is one of FakeAcct's jurisdictions
+	
+	When FakeAcct takes CPE training during the current period
+
+Scenario: Client reports all of his CPE training for the current period
+	
+	Given Client reports training for the current period
+        And Client has chosen to report 
+credits on an  annual basis
+	Then Total credits for the year should be at least 40 credits in CPE training
+
+Scenario: Client reports all of his CPE training for the current period
+	
+	Given Client reports training for the current period
+        And Client has chosen to report 
+credits on a triennial basis
+	Then Total credits for the period should be at least 120 credits in CPE training
+
+@NewLicensee
+Scenario: Client is a new licensee, their period begins on the January 1st of the beginning of the period and requirements should be the same as experienced licensees
+	Given Client is a new licensee
+        And Client has chosen to report 
+credits on an annual basis basis
+	Then Period begins on January 1
+	And Total credits for the year should be at least 40 credits
+
+@NewLicensee
+Scenario: Client is a new licensee, their period begins on the January 1st of the beginning of the period and requirements should be the same as experienced licensees
+	Given Client is a new licensee
+        And Client has chosen to report 
+credits on a triennial basis basis
+	Then Period begins on January 1 2 years prior
+	And total credits for the period should be at least 120 credits
+
+Scenario: Client is required to earn 4 credits in ethics on a rolling triennial basis regardless of whether I am tracking on an annual or triennial basis
+	Then Ethics creditsshould be at least 4 credits over the past 3 years
+
+Scenario: Client is required to earn at least 60% of the total requirement in the following subjects: Accounting, Auditing, Tax, Computer Science, Management Advisory Services and Ethics
+	Then Accounting, Auditing, Tax, Computer Science, Management Advisory Services and Ethics credit should be at least 60% of the Total Requirement earned
+
+Scenario: No more than 60% of Client credit can be in the combined values from teaching, writing and self-study formats
+	Then No more than 60% of credit can be in the combined values from teaching, writing and self-study formats
+
+Scenario: If Client is engaged in attest services, at least 20% of the total requirement must be in Accounting and Auditing
+	Given Client is engaged in Attest Services
+	Then At least 20% of the total requirement must be in Accounting and Auditing
+
+
+	
+	
