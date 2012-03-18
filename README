@@ -1,4 +1,4 @@
-These two specs are examples of using specs to drive precise customer requirements. For this engagement, the problem was modeling compliance with training requirements for professionals such as lawyers and accountants.  The rules are different in virtually every jurisdiction (typically a state is the jurisdiciton) and determining whether an individual or group is 'in compliance' for accrediation spanning multiple jurisdictions can be tricky.
+These two specs are examples of using Cucumber/Gherkin-syntax specs to drive precise customer requirements. For this engagement, the problem was modeling compliance with training requirements for professionals such as lawyers and accountants.  The rules are different in virtually every jurisdiction (typically a state is the jurisdiciton) and determining whether an individual or group is 'in compliance' for accrediation spanning multiple jurisdictions can be tricky.
 
 In this case, the domain expert used Gherkin syntax to create SpecFlow specs.  SpecFlow is a .NET implementation of Cucumber/Gherkin.
 
